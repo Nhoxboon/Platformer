@@ -22,11 +22,11 @@ public class PlayerAnimator : NhoxBehaviour
 
     public void UpdateMovement(bool isMoving)
     {
-        anim.SetBool("isMoving", isMoving);
+        anim.SetBool(AnimationStrings.isMoving, isMoving);
     }
 
     public void UpdateRunning(bool isRunning)
     {
-        anim.SetBool("isRunning", isRunning);
+        anim.SetBool(AnimationStrings.isRunning, isRunning);
     }
 }
