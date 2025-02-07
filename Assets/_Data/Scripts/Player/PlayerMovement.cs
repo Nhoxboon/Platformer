@@ -7,6 +7,9 @@ public class PlayerMovement : NhoxBehaviour
 {
     [SerializeField] protected float walkSpeed = 5f;
     [SerializeField] protected float runSpeed = 8f;
+    [SerializeField] protected float airSpeed = 3f;
+
+    [SerializeField] protected float jumpImpulse = 10f;
     [SerializeField] protected float currentSpeed;
     public Vector2 moveInput;
 
@@ -65,10 +68,41 @@ public class PlayerMovement : NhoxBehaviour
         }
     }
 
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        //TODO Check is alive as well
+        if(context.started && PlayerCtrl.Instance.TouchingDirections.IsGrounded && PlayerCtrl.Instance.PlayerAnimator.CanMove())
+        {
+            PlayerCtrl.Instance.PlayerAnimator.UpdateJump();
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            PlayerCtrl.Instance.PlayerAnimator.Attack();
+        }
+    }
+
     protected void Move()
     {
-        currentSpeed = isRunning ? runSpeed : walkSpeed;
+        currentSpeed = CalculateCurrentSpeed();
         rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
+
+        PlayerCtrl.Instance.PlayerAnimator.CheckJumpOrFall(rb.velocity.y);
+    }
+
+    private float CalculateCurrentSpeed()
+    {
+        if (PlayerCtrl.Instance.TouchingDirections.IsOnWall || !PlayerCtrl.Instance.PlayerAnimator.CanMove())
+        {
+            return 0f;
+        }
+
+        return PlayerCtrl.Instance.TouchingDirections.IsGrounded ? (isRunning ? runSpeed : walkSpeed) : airSpeed;
+
     }
 
     protected void SetFacingDirection(Vector2 moveInput)
