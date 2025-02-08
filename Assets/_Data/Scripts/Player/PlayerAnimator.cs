@@ -6,6 +6,21 @@ public class PlayerAnimator : NhoxBehaviour
 {
     [SerializeField] protected Animator anim;
 
+    protected override void Start()
+    {
+        base.Start();
+        PlayerCtrl.Instance.TouchingDirections.OnGroundedChanged += CheckGrounded;
+        PlayerCtrl.Instance.TouchingDirections.OnWallChanged += IsOnWall;
+        PlayerCtrl.Instance.TouchingDirections.OnCellingChanged += IsOnCelling;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        PlayerCtrl.Instance.TouchingDirections.OnGroundedChanged -= CheckGrounded;
+        PlayerCtrl.Instance.TouchingDirections.OnWallChanged -= IsOnWall;
+        PlayerCtrl.Instance.TouchingDirections.OnCellingChanged -= IsOnCelling;
+    }
+
 
     protected override void LoadComponents()
     {

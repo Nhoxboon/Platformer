@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class TouchingDirections : NhoxBehaviour
     public float cellingDistance = 0.05f;
 
     [SerializeField] protected CapsuleCollider2D touchingCol;
+
+    public event Action<bool> OnGroundedChanged;
+    public event Action<bool> OnWallChanged;
+    public event Action<bool> OnCellingChanged;
+
 
     [SerializeField] protected RaycastHit2D[] groundHits = new RaycastHit2D[5];
     [SerializeField] protected RaycastHit2D[] wallHits = new RaycastHit2D[5];
@@ -25,7 +31,7 @@ public class TouchingDirections : NhoxBehaviour
         private set
         {
             isGrounded = value;
-            PlayerCtrl.Instance.PlayerAnimator?.CheckGrounded(value);
+            OnGroundedChanged?.Invoke(value);
         }
     }
 
@@ -39,7 +45,7 @@ public class TouchingDirections : NhoxBehaviour
         private set
         {
             isOnWall = value;
-            PlayerCtrl.Instance.PlayerAnimator?.IsOnWall(value);
+            OnWallChanged?.Invoke(value);
         }
     }
 
@@ -53,7 +59,7 @@ public class TouchingDirections : NhoxBehaviour
         private set
         {
             isOnCelling = value;
-            PlayerCtrl.Instance.PlayerAnimator?.IsOnCelling(value);
+            OnCellingChanged?.Invoke(value);
         }
     }
 
