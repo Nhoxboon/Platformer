@@ -11,6 +11,8 @@ public class KnightMovement : NhoxBehaviour
 
     [SerializeField] protected DetectionZone attackZone;
 
+    public event System.Action<bool> OnTargetDetected;
+
     public enum WalkableDirection { Right, Left };
 
     [SerializeField] protected Vector2 walkDirectionVector = Vector2.right;
@@ -22,7 +24,7 @@ public class KnightMovement : NhoxBehaviour
         private set
         {
             hasTarget = value;
-            EnemyCtrl.Instance.KnightAnimator?.CheckTarget(value);
+            OnTargetDetected?.Invoke(hasTarget);
         }
     }
 

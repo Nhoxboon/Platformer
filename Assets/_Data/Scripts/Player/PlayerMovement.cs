@@ -21,6 +21,8 @@ public class PlayerMovement : NhoxBehaviour
     [SerializeField] protected bool isRunning = false;
     public bool IsRunning => isRunning;
 
+    protected bool IsAlive => PlayerCtrl.Instance.Damageable.IsAlive;
+
     [SerializeField] protected Rigidbody2D rb;
 
     private void FixedUpdate()
@@ -40,8 +42,6 @@ public class PlayerMovement : NhoxBehaviour
         this.rb = GetComponentInParent<Rigidbody2D>();
         Debug.Log(transform.name + "Load Rigidbody2D", gameObject);
     }
-
-    
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -119,6 +119,7 @@ public class PlayerMovement : NhoxBehaviour
 
      void Flip()
     {
+        if(!IsAlive) return;
         isFacingRight = !isFacingRight;
 
         Vector3 currentScale = transform.parent.localScale;

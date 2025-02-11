@@ -6,6 +6,17 @@ public class KnightAnimator : NhoxBehaviour
 {
     [SerializeField] protected Animator anim;
 
+    protected override void Start()
+    {
+        EnemyCtrl.Instance.KnightMovement.OnTargetDetected += CheckTarget;
+        EnemyCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        EnemyCtrl.Instance.KnightMovement.OnTargetDetected -= CheckTarget;
+        EnemyCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
+    }
 
     protected override void LoadComponents()
     {
@@ -23,6 +34,11 @@ public class KnightAnimator : NhoxBehaviour
     public virtual void CheckTarget(bool hasTarget)
     {
         anim.SetBool(AnimationStrings.hasTarget, hasTarget);
+    }
+
+    public void HandleAliveState(bool isAlive)
+    {
+        anim.SetBool(AnimationStrings.isAlive, isAlive);
     }
 
     public bool CanMove()

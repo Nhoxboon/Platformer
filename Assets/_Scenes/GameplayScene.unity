@@ -7613,7 +7613,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.45, y: -0.83, z: -10}
+  m_LocalPosition: {x: 3.27, y: -0.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7731,7 +7731,7 @@ Transform:
   m_GameObject: {fileID: 539877265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.45, y: -0.83, z: -10}
+  m_LocalPosition: {x: 3.27, y: -0.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9715,6 +9715,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5576534892315859837, guid: 1f7eb8f07853143c9a63602272f19ad7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576534892315859837, guid: 1f7eb8f07853143c9a63602272f19ad7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 1.7427874
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576534892315859837, guid: 1f7eb8f07853143c9a63602272f19ad7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: 0.053034306
+      objectReference: {fileID: 0}
     - target: {fileID: 7626306846271788704, guid: 1f7eb8f07853143c9a63602272f19ad7, type: 3}
       propertyPath: m_Name
       value: KnightEnemy
@@ -9734,7 +9746,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1782803543772467700, guid: 10e8d322ee7e04dd29d8eab4b5558df7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.45
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 1782803543772467700, guid: 10e8d322ee7e04dd29d8eab4b5558df7, type: 3}
       propertyPath: m_LocalPosition.y

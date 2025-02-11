@@ -16,6 +16,9 @@ public class PlayerCtrl : NhoxBehaviour
     [SerializeField] protected TouchingDirections touchingDirections;
     public TouchingDirections TouchingDirections => touchingDirections;
 
+    [SerializeField] protected Damageable damageable;
+    public Damageable Damageable => damageable;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,6 +36,7 @@ public class PlayerCtrl : NhoxBehaviour
         this.LoadPlayerMovement();
         this.LoadPlayerAnimator();
         this.LoadTouchingDirections();
+        this.LoadDamageable();
     }
 
     protected virtual void LoadPlayerMovement()
@@ -54,5 +58,12 @@ public class PlayerCtrl : NhoxBehaviour
         if (this.touchingDirections != null) return;
         touchingDirections = GetComponentInChildren<TouchingDirections>();
         Debug.Log(transform.name + "Load TouchingDirections", gameObject);
+    }
+
+    protected virtual void LoadDamageable()
+    {
+        if (this.damageable != null) return;
+        this.damageable = GetComponentInChildren<Damageable>();
+        Debug.Log(transform.name + "Load Damageable", gameObject);
     }
 }

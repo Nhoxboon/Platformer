@@ -54,6 +54,56 @@ MonoBehaviour:
   isMoving: 0
   isRunning: 0
   rb: {fileID: 25376534936048668}
+--- !u!1 &3726921253460192887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 357585982320107594}
+  - component: {fileID: 3721565914551452503}
+  m_Layer: 7
+  m_Name: Damageable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &357585982320107594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726921253460192887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1782803543772467700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3721565914551452503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726921253460192887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f5cfe8fa3a82246b020d7f71e6e8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+  timeSinceHit: 0
+  invincibleTime: 0.25
+  isInvincible: 0
+  isAlive: 1
 --- !u!1 &4800846203331831036
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +207,7 @@ Transform:
   - {fileID: 6050388477780819837}
   - {fileID: 2284913228638911583}
   - {fileID: 7177898188604668029}
+  - {fileID: 357585982320107594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1545236869674048928
@@ -447,6 +498,7 @@ MonoBehaviour:
   playerMovement: {fileID: 2801989148488436562}
   playerAnimator: {fileID: 5427649522785811570}
   touchingDirections: {fileID: 5221047646063300047}
+  damageable: {fileID: 3721565914551452503}
 --- !u!1 &6031051163655690685
 GameObject:
   m_ObjectHideFlags: 0

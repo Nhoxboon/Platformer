@@ -12,6 +12,7 @@ public class PlayerAnimator : NhoxBehaviour
         PlayerCtrl.Instance.TouchingDirections.OnGroundedChanged += CheckGrounded;
         PlayerCtrl.Instance.TouchingDirections.OnWallChanged += IsOnWall;
         PlayerCtrl.Instance.TouchingDirections.OnCellingChanged += IsOnCelling;
+        PlayerCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
     }
 
     protected virtual void OnDestroy()
@@ -19,6 +20,7 @@ public class PlayerAnimator : NhoxBehaviour
         PlayerCtrl.Instance.TouchingDirections.OnGroundedChanged -= CheckGrounded;
         PlayerCtrl.Instance.TouchingDirections.OnWallChanged -= IsOnWall;
         PlayerCtrl.Instance.TouchingDirections.OnCellingChanged -= IsOnCelling;
+        PlayerCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
     }
 
 
@@ -73,6 +75,11 @@ public class PlayerAnimator : NhoxBehaviour
     public void IsOnCelling(bool isOnCelling)
     {
         anim.SetBool(AnimationStrings.isOnCelling, isOnCelling);
+    }
+
+    public void HandleAliveState(bool isAlive)
+    {
+        anim.SetBool(AnimationStrings.isAlive, isAlive);
     }
 
     public bool CanMove()

@@ -19,6 +19,9 @@ public class EnemyCtrl : NhoxBehaviour
     [SerializeField] protected DetectionZone detectionZone;
     public DetectionZone DetectionZone => detectionZone;
 
+    [SerializeField] protected Damageable damageable;
+    public Damageable Damageable => damageable;
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,6 +40,7 @@ public class EnemyCtrl : NhoxBehaviour
         this.LoadKnightAnimator();
         this.LoadTouchingDirections();
         this.LoadDetectionZone();
+        this.LoadDamageable();
     }
 
     protected virtual void LoadKnightMovement()
@@ -65,5 +69,12 @@ public class EnemyCtrl : NhoxBehaviour
         if (this.detectionZone != null) return;
         detectionZone = GetComponentInChildren<DetectionZone>();
         Debug.Log(transform.name + "Load DetectionZone", gameObject);
+    }
+
+    protected virtual void LoadDamageable()
+    {
+        if (this.damageable != null) return;
+        this.damageable = GetComponentInChildren<Damageable>();
+        Debug.Log(transform.name + "Load Damageable", gameObject);
     }
 }
