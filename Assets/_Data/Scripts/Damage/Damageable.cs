@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : NhoxBehaviour
 {
+    public UnityEvent<int, Vector2> damageableHit;
 
     [SerializeField] protected int maxHealth = 100;
     public int MaxHealth => maxHealth;
@@ -28,6 +30,8 @@ public class Damageable : NhoxBehaviour
     [SerializeField] protected bool isInvincible = false;
     
     public event Action<bool> OnAliveStateChanged;
+    public event Action<bool> OnHitStateChanged;
+    public Func<bool> GetIsHitFromAnimator;
 
     [SerializeField] protected bool isAlive = true;
     public bool IsAlive
@@ -40,17 +44,29 @@ public class Damageable : NhoxBehaviour
         }
     }
 
+    public bool IsHit 
+    { 
+        get => GetIsHitFromAnimator?.Invoke() ?? false;
+        set
+        {
+            OnHitStateChanged?.Invoke(value);
+        }
+    }
+
     private void Update()
     {
         this.Invincible();
     }
 
-    public bool Hit(int damage)
+    public bool Hit(int damage, Vector2 knockBack)
     {
         if (IsAlive && !isInvincible)
         {
             Health -= damage;
             isInvincible = true;
+
+            IsHit = true;
+            damageableHit?.Invoke(damage, knockBack);
             return true;
         }
         return false;

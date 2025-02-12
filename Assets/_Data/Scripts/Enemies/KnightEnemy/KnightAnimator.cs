@@ -10,12 +10,18 @@ public class KnightAnimator : NhoxBehaviour
     {
         EnemyCtrl.Instance.KnightMovement.OnTargetDetected += CheckTarget;
         EnemyCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
+        EnemyCtrl.Instance.Damageable.OnHitStateChanged += HandleHitState;
+        EnemyCtrl.Instance.KnightMovement.CalculateAttackCooldown += HandleAttackCooldown;
+        EnemyCtrl.Instance.Damageable.GetIsHitFromAnimator = () => anim.GetBool(AnimationStrings.isHit);
+        EnemyCtrl.Instance.KnightMovement.GetAttackTimeCooldown = () => anim.GetFloat(AnimationStrings.attackCooldown);
     }
 
     protected virtual void OnDestroy()
     {
         EnemyCtrl.Instance.KnightMovement.OnTargetDetected -= CheckTarget;
         EnemyCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
+        EnemyCtrl.Instance.Damageable.OnHitStateChanged -= HandleHitState;
+        EnemyCtrl.Instance.KnightMovement.CalculateAttackCooldown -= HandleAttackCooldown;
     }
 
     protected override void LoadComponents()
@@ -36,9 +42,19 @@ public class KnightAnimator : NhoxBehaviour
         anim.SetBool(AnimationStrings.hasTarget, hasTarget);
     }
 
-    public void HandleAliveState(bool isAlive)
+    public virtual void HandleAliveState(bool isAlive)
     {
         anim.SetBool(AnimationStrings.isAlive, isAlive);
+    }
+
+    public virtual void HandleHitState(bool isHit)
+    {
+        anim.SetBool(AnimationStrings.isHit, isHit);
+    }
+
+    public virtual void HandleAttackCooldown(float attackCooldown)
+    {
+        anim.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(attackCooldown, 0));
     }
 
     public bool CanMove()

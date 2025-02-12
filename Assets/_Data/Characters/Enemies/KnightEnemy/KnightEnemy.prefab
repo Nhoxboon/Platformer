@@ -113,6 +113,7 @@ MonoBehaviour:
   walkStopRate: 0.05
   rb: {fileID: 8188145913859294524}
   attackZone: {fileID: 3085269043109024664}
+  cliffDetectionZone: {fileID: 2920850846155560409}
   walkDirectionVector: {x: 1, y: 0}
   hasTarget: 0
   walkDirection: 0
@@ -160,6 +161,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f5cfe8fa3a82246b020d7f71e6e8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageableHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 924545641584938431}
+        m_TargetAssemblyTypeName: KnightMovement, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxHealth: 100
   health: 100
   timeSinceHit: 0
@@ -223,7 +239,7 @@ GameObject:
   - component: {fileID: 5768288537660828139}
   - component: {fileID: 3085269043109024664}
   m_Layer: 10
-  m_Name: DetectionZone
+  m_Name: HitboxDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,8 +317,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407231e1a3979401ab63162755b3a650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noCollidersDetected:
+    m_PersistentCalls:
+      m_Calls: []
   detectedColliders: []
   col: {fileID: 5768288537660828139}
+--- !u!1 &7525903240927948475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5734189999718075779}
+  - component: {fileID: 1464202029507316411}
+  - component: {fileID: 2920850846155560409}
+  m_Layer: 11
+  m_Name: CliffDetectionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5734189999718075779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525903240927948475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.92, y: -1.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3405669891502161669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1464202029507316411
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525903240927948475}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &2920850846155560409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7525903240927948475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407231e1a3979401ab63162755b3a650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noCollidersDetected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 924545641584938431}
+        m_TargetAssemblyTypeName: KnightMovement, Assembly-CSharp
+        m_MethodName: OnCliffDetected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  detectedColliders: []
+  col: {fileID: 1464202029507316411}
 --- !u!1 &7626306846271788704
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +469,7 @@ Transform:
   - {fileID: 1783750614655738385}
   - {fileID: 4834578335968375416}
   - {fileID: 1231684590572122979}
+  - {fileID: 5734189999718075779}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3501712283287673249
@@ -524,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 8543520834998156959}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -574,12 +701,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.8751907, y: 1.3154215}
-      - {x: 1.6815029, y: 0.81854445}
-      - {x: 2.20198, y: 0.13339293}
-      - {x: 1.9355888, y: -0.59064794}
-      - {x: 3.499371, y: -0.93033296}
-      - {x: 3.4622989, y: 0.7093601}
+    - - {x: 1.8450487, y: 1.2424194}
+      - {x: 0.6756953, y: 0.76176494}
+      - {x: 0.76942456, y: 0.044922948}
+      - {x: 0.99467206, y: -0.64742744}
+      - {x: 2.3962271, y: -0.9059989}
+      - {x: 2.4970481, y: 0.64446926}
   m_UseDelaunayMesh: 0
 --- !u!114 &1970693065016336632
 MonoBehaviour:
@@ -594,3 +721,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 5576534892315859837}
+  damage: 10
+  knockBack: {x: 5, y: 2}

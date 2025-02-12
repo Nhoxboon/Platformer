@@ -13,6 +13,8 @@ public class PlayerAnimator : NhoxBehaviour
         PlayerCtrl.Instance.TouchingDirections.OnWallChanged += IsOnWall;
         PlayerCtrl.Instance.TouchingDirections.OnCellingChanged += IsOnCelling;
         PlayerCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
+        PlayerCtrl.Instance.Damageable.OnHitStateChanged += HandleHitState;
+        PlayerCtrl.Instance.Damageable.GetIsHitFromAnimator = () => anim.GetBool(AnimationStrings.isHit);
     }
 
     protected virtual void OnDestroy()
@@ -21,6 +23,7 @@ public class PlayerAnimator : NhoxBehaviour
         PlayerCtrl.Instance.TouchingDirections.OnWallChanged -= IsOnWall;
         PlayerCtrl.Instance.TouchingDirections.OnCellingChanged -= IsOnCelling;
         PlayerCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
+        PlayerCtrl.Instance.Damageable.OnHitStateChanged -= HandleHitState;
     }
 
 
@@ -80,6 +83,11 @@ public class PlayerAnimator : NhoxBehaviour
     public void HandleAliveState(bool isAlive)
     {
         anim.SetBool(AnimationStrings.isAlive, isAlive);
+    }
+
+    public void HandleHitState(bool isHit)
+    {
+        anim.SetBool(AnimationStrings.isHit, isHit);
     }
 
     public bool CanMove()

@@ -6,6 +6,7 @@ public class DamageSender : NhoxBehaviour
 {
     [SerializeField] protected Collider2D attackCollider;
     [SerializeField] protected int damage = 10;
+    [SerializeField] protected Vector2 knockBack =  Vector2.zero;
 
     protected override void LoadComponents()
     {
@@ -25,7 +26,8 @@ public class DamageSender : NhoxBehaviour
         Damageable damageable = collision.GetComponentInChildren<Damageable>();
         if (damageable != null)
         {
-            _ = damageable.Hit(damage);
+            Vector2 deliveredKnockBack = transform.parent.localScale.x > 0 ? knockBack : new Vector2(knockBack.x * -1, knockBack.y);
+            _ = damageable.Hit(damage, deliveredKnockBack);
         }
     }
 }

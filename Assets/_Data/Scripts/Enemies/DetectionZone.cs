@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DetectionZone : NhoxBehaviour
 {
+    public UnityEvent noCollidersDetected;
     public List<Collider2D> detectedColliders = new List<Collider2D>();
 
     [SerializeField] protected Collider2D col;
@@ -29,5 +31,9 @@ public class DetectionZone : NhoxBehaviour
     protected void OnTriggerExit2D(Collider2D collision)
     {
         detectedColliders.Remove(collision);
+        if (detectedColliders.Count <= 0)
+        {
+            noCollidersDetected.Invoke();
+        }
     }
 }

@@ -86,11 +86,19 @@ public class PlayerMovement : NhoxBehaviour
         }
     }
 
+    public void OnHit(int damage, Vector2 knockBack)
+    {
+        rb.velocity = new Vector2(knockBack.x, rb.velocity.y + knockBack.y);
+    }
+
     protected void Move()
     {
-        currentSpeed = CalculateCurrentSpeed();
-        rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
-
+        if (!PlayerCtrl.Instance.Damageable.IsHit)
+        {
+            currentSpeed = CalculateCurrentSpeed();
+            rb.velocity = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
+        }
+        
         PlayerCtrl.Instance.PlayerAnimator.CheckJumpOrFall(rb.velocity.y);
     }
 
