@@ -67,6 +67,8 @@ public class Damageable : NhoxBehaviour
 
             IsHit = true;
             damageableHit?.Invoke(damage, knockBack);
+
+            CharacterEvents.characterDamaged?.Invoke(gameObject, damage);
             return true;
         }
         return false;
