@@ -74,6 +74,19 @@ public class Damageable : NhoxBehaviour
         return false;
     }
 
+    public bool Heal(int heal)
+    {
+        if (IsAlive && health < maxHealth)
+        {
+            int maxHeal = Mathf.Max(MaxHealth - Health, 0);
+            int actualHeal = Mathf.Min(maxHeal, heal);
+            Health += actualHeal;
+            CharacterEvents.characterHealed?.Invoke(gameObject, actualHeal);
+            return true;
+        }
+        return false;
+    }
+
     protected virtual void Invincible()
     {
         if (isInvincible)

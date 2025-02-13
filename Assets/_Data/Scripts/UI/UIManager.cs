@@ -35,7 +35,6 @@ public class UIManager : NhoxBehaviour
 
     public void CharacterHealed(GameObject character, int heal)
     {
-        //TODO
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
         TMP_Text tmpText = Instantiate(healText, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();

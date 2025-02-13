@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8faefb2238845dd8f6d432326d62d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
+  walkAcceleration: 30
+  maxSpeed: 3
   walkStopRate: 0.05
   rb: {fileID: 8188145913859294524}
   attackZone: {fileID: 3085269043109024664}
