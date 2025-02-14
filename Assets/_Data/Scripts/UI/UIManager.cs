@@ -10,16 +10,14 @@ public class UIManager : NhoxBehaviour
 
     public Canvas gameCanvas;
 
-    protected override void OnEnable()
+    protected virtual void OnEnable()
     {
-        base.OnEnable();
         CharacterEvents.characterDamaged += CharacterTookDamage;
         CharacterEvents.characterHealed += CharacterHealed;
     }
 
-    protected override void OnDisable()
+    protected virtual void OnDisable()
     {
-        base.OnDisable();
         CharacterEvents.characterDamaged -= CharacterTookDamage;
         CharacterEvents.characterHealed -= CharacterHealed;
     }

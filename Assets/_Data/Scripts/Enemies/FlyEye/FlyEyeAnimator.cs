@@ -11,7 +11,11 @@ public class FlyEyeAnimator : NhoxBehaviour
         base.Start();
         FlyEyeCtrl.Instance.FlyEyeMovement.OnTargetDetected += CheckTarget;
         FlyEyeCtrl.Instance.FlyEyeMovement.CalculateAttackCooldown += HandleAttackCooldown;
+        FlyEyeCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
+        FlyEyeCtrl.Instance.Damageable.OnHitStateChanged += HandleHitState;
         FlyEyeCtrl.Instance.FlyEyeMovement.GetAttackTimeCooldown = () => anim.GetFloat(AnimationStrings.attackCooldown);
+        FlyEyeCtrl.Instance.Damageable.GetIsHitFromAnimator = () => anim.GetBool(AnimationStrings.isHit);
+
 
     }
 
@@ -19,6 +23,8 @@ public class FlyEyeAnimator : NhoxBehaviour
     {
         FlyEyeCtrl.Instance.FlyEyeMovement.OnTargetDetected -= CheckTarget;
         FlyEyeCtrl.Instance.FlyEyeMovement.CalculateAttackCooldown -= HandleAttackCooldown;
+        FlyEyeCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
+        FlyEyeCtrl.Instance.Damageable.OnHitStateChanged -= HandleHitState;
     }
 
     protected override void LoadComponents()

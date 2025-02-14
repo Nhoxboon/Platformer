@@ -25,15 +25,4 @@ public class NhoxBehaviour : MonoBehaviour
     {
         this.LoadComponents();
     }
-
-
-    protected virtual void OnEnable()
-    {
-        //For override
-    }
-
-    protected virtual void OnDisable()
-    {
-        //For override
-    }
 }
