@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightAnimator : NhoxBehaviour
+public class FlyEyeAnimator : NhoxBehaviour
 {
     [SerializeField] protected Animator anim;
 
     protected override void Start()
     {
-        KnightCtrl.Instance.KnightMovement.OnTargetDetected += CheckTarget;
-        KnightCtrl.Instance.Damageable.OnAliveStateChanged += HandleAliveState;
-        KnightCtrl.Instance.Damageable.OnHitStateChanged += HandleHitState;
-        KnightCtrl.Instance.KnightMovement.CalculateAttackCooldown += HandleAttackCooldown;
-        KnightCtrl.Instance.Damageable.GetIsHitFromAnimator = () => anim.GetBool(AnimationStrings.isHit);
-        KnightCtrl.Instance.KnightMovement.GetAttackTimeCooldown = () => anim.GetFloat(AnimationStrings.attackCooldown);
+        base.Start();
+        FlyEyeCtrl.Instance.FlyEyeMovement.OnTargetDetected += CheckTarget;
+        FlyEyeCtrl.Instance.FlyEyeMovement.CalculateAttackCooldown += HandleAttackCooldown;
+        FlyEyeCtrl.Instance.FlyEyeMovement.GetAttackTimeCooldown = () => anim.GetFloat(AnimationStrings.attackCooldown);
+
     }
 
     protected virtual void OnDestroy()
     {
-        KnightCtrl.Instance.KnightMovement.OnTargetDetected -= CheckTarget;
-        KnightCtrl.Instance.Damageable.OnAliveStateChanged -= HandleAliveState;
-        KnightCtrl.Instance.Damageable.OnHitStateChanged -= HandleHitState;
-        KnightCtrl.Instance.KnightMovement.CalculateAttackCooldown -= HandleAttackCooldown;
+        FlyEyeCtrl.Instance.FlyEyeMovement.OnTargetDetected -= CheckTarget;
+        FlyEyeCtrl.Instance.FlyEyeMovement.CalculateAttackCooldown -= HandleAttackCooldown;
     }
 
     protected override void LoadComponents()

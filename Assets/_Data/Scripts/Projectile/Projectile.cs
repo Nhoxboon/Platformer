@@ -5,8 +5,8 @@ using UnityEngine;
 public class Projectile : NhoxBehaviour
 {
     [SerializeField] protected int damage = 10;
-    [SerializeField] protected Vector2 moveSpeed = new Vector2(3f, 0);
-    [SerializeField] protected Vector2 knockBack = new Vector2(0, 0);
+    [SerializeField] protected Vector2 moveSpeed = new Vector2(8f, 0);
+    [SerializeField] protected Vector2 knockBack = new Vector2(3f, 0);
 
     [SerializeField] protected Rigidbody2D rb;
 
@@ -31,12 +31,15 @@ public class Projectile : NhoxBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Damageable damageable = collision.GetComponent<Damageable>();
+        Damageable damageable = collision.GetComponentInChildren<Damageable>();
 
         if(damageable != null)
         {
-            Vector2 deliveredKnockBack = transform.parent.localScale.x > 0 ? knockBack : new Vector2(knockBack.x * -1, knockBack.y);
-            _ = damageable.Hit(damage, deliveredKnockBack);
+            Vector2 deliveredKnockBack = transform.localScale.x > 0 ? knockBack : new Vector2(knockBack.x * -1, knockBack.y);
+            _ = damageable.Hit(10, deliveredKnockBack);
+            Destroy(gameObject);
         }
+
+        Destroy(gameObject);
     }
 }

@@ -111,9 +111,9 @@ public class KnightMovement : NhoxBehaviour
 
     protected virtual void Move()
     {
-        if (!EnemyCtrl.Instance.Damageable.IsHit)
+        if (!KnightCtrl.Instance.Damageable.IsHit)
         {
-            if (EnemyCtrl.Instance.KnightAnimator.CanMove())
+            if (KnightCtrl.Instance.KnightAnimator.CanMove() && KnightCtrl.Instance.TouchingDirections.IsGrounded)
                 rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), rb.velocity.y);
             else
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
@@ -136,7 +136,7 @@ public class KnightMovement : NhoxBehaviour
 
     public void OnCliffDetected()
     {
-        if (EnemyCtrl.Instance.TouchingDirections.IsGrounded)
+        if (KnightCtrl.Instance.TouchingDirections.IsGrounded)
         {
             FlipDirections();
         }
@@ -160,7 +160,7 @@ public class KnightMovement : NhoxBehaviour
 
     protected virtual void Flip()
     {
-        if (EnemyCtrl.Instance.TouchingDirections.IsOnWall && EnemyCtrl.Instance.TouchingDirections.IsGrounded)
+        if (KnightCtrl.Instance.TouchingDirections.IsOnWall && KnightCtrl.Instance.TouchingDirections.IsGrounded)
         {
             FlipDirections();
         }
