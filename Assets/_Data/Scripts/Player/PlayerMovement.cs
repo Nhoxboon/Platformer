@@ -86,6 +86,14 @@ public class PlayerMovement : NhoxBehaviour
         }
     }
 
+    public void OnRangedAttack(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PlayerCtrl.Instance.PlayerAnimator.RangedAttack();
+        }
+    }
+
     public void OnHit(int damage, Vector2 knockBack)
     {
         rb.velocity = new Vector2(knockBack.x, rb.velocity.y + knockBack.y);

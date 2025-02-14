@@ -12,6 +12,8 @@ internal class AnimationStrings
 
     internal static string attack = "attack";
 
+    internal static string rangedAttack = "rangedAttack";
+
     internal static string isGrounded = "isGrounded";
 
     internal static string yVelocity = "yVelocity";
@@ -29,6 +31,5 @@ internal class AnimationStrings
     internal static string isHit = "isHit";
 
     internal static string attackCooldown = "attackCooldown";
-
 
 }

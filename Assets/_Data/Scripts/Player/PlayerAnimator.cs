@@ -60,6 +60,11 @@ public class PlayerAnimator : NhoxBehaviour
         anim.SetTrigger(AnimationStrings.attack);
     }
 
+    public void RangedAttack()
+    {
+        anim.SetTrigger(AnimationStrings.rangedAttack);
+    }
+
     public void CheckGrounded(bool isGrounded)
     {
         anim.SetBool(AnimationStrings.isGrounded, isGrounded);

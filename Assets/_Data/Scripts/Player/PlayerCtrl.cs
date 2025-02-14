@@ -19,6 +19,9 @@ public class PlayerCtrl : NhoxBehaviour
     [SerializeField] protected Damageable damageable;
     public Damageable Damageable => damageable;
 
+    [SerializeField] protected ProjectileLauncher projectileLauncher;
+    public ProjectileLauncher ProjectileLauncher => projectileLauncher;
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,6 +40,7 @@ public class PlayerCtrl : NhoxBehaviour
         this.LoadPlayerAnimator();
         this.LoadTouchingDirections();
         this.LoadDamageable();
+        this.LoadProjectileLauncher();
     }
 
     protected virtual void LoadPlayerMovement()
@@ -65,5 +69,17 @@ public class PlayerCtrl : NhoxBehaviour
         if (this.damageable != null) return;
         this.damageable = GetComponentInChildren<Damageable>();
         Debug.Log(transform.name + "Load Damageable", gameObject);
+    }
+
+    protected virtual void LoadProjectileLauncher()
+    {
+        if (projectileLauncher != null) return;
+        projectileLauncher = GetComponentInChildren<ProjectileLauncher>();
+        Debug.Log(transform.name + " LoadProjectileLauncher", gameObject);
+    }
+
+    public void AnimationEventFire()
+    {
+        projectileLauncher.FireProjectile();
     }
 }
