@@ -10,12 +10,6 @@ public class Projectile : NhoxBehaviour
 
     [SerializeField] protected Rigidbody2D rb;
 
-    protected override void Start()
-    {
-        base.Start();
-        rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
-    }
-
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -37,9 +31,14 @@ public class Projectile : NhoxBehaviour
         {
             Vector2 deliveredKnockBack = transform.localScale.x > 0 ? knockBack : new Vector2(knockBack.x * -1, knockBack.y);
             _ = damageable.Hit(10, deliveredKnockBack);
-            Destroy(gameObject);
+            ArrowSpawner.Instance.Despawn(transform);
         }
 
-        Destroy(gameObject);
+        ArrowSpawner.Instance.Despawn(transform);
+    }
+
+    public void Launch()
+    {
+        rb.velocity = new Vector2(moveSpeed.x * Mathf.Sign(transform.localScale.x), moveSpeed.y);
     }
 }

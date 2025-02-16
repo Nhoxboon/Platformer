@@ -61,7 +61,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AirAttack_1
+    path: Attack/AirAttack_1
     classID: 60
     script: {fileID: 0}
     flags: 0
@@ -89,7 +89,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1207675334
+      path: 2327122505
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 60
@@ -176,7 +176,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: AirAttack_1
+    path: Attack/AirAttack_1
     classID: 60
     script: {fileID: 0}
     flags: 0

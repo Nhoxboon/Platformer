@@ -4,28 +4,14 @@ using UnityEngine;
 
 public class ProjectileLauncher : NhoxBehaviour
 {
-    public GameObject projectilePrefab;
 
     public virtual void FireProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        Vector3 origScale = projectile.transform.localScale;
+        Transform projectileTransform = ArrowSpawner.Instance.Spawn(ArrowSpawner.arrow, transform.position);
 
-        projectile.transform.localScale = new Vector3(origScale.x * transform.parent.parent.localScale.x > 0 ? 1 : -1, origScale.y, origScale.z);
+        float direction = Mathf.Sign(transform.parent.parent.localScale.x);
+        projectileTransform.localScale = new Vector3(Mathf.Abs(projectileTransform.localScale.x) * direction, projectileTransform.localScale.y, projectileTransform.localScale.z);
+
+        projectileTransform.GetComponentInChildren<Projectile>().Launch();
     }
-
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.LoadProjectilePrefab();
-    }
-
-    protected virtual void LoadProjectilePrefab()
-    {
-        if (projectilePrefab != null) return;
-        projectilePrefab = Resources.Load<GameObject>("Arrow");
-        Debug.Log(transform.name + " LoadProjectilePrefab", gameObject);
-    }
-
-    
 }
