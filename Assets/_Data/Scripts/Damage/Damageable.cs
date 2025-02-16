@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Damageable : NhoxBehaviour
 {
     public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent<int, int> healthChanged;
 
     [SerializeField] protected int maxHealth = 100;
     public int MaxHealth => maxHealth;
@@ -18,6 +19,7 @@ public class Damageable : NhoxBehaviour
         set
         {
             health = value;
+            healthChanged?.Invoke(health, MaxHealth);
 
             if (health <= 0)
             {
